@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Create Graphs</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <style>
+    .nodelabel,.edgelabel{
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Chrome/Safari/Opera */
+      -khtml-user-select: none; /* Konqueror */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none;
+      pointer-events:none;
+    }
+
+    .edgelabel{
+      background-color: yellow;
+    }
+
+    #svg-space{
+      border: 1px solid #D1D1D1;
+      border-radius: 4px;
+    }
+
+    .edgepath:hover{
+      stroke: red;
+      pointer-events:all;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="" style="margin-top: 5%">
+        <h4>Create Graph using Adjacency Matrix/AB List</h4>
+        <div class="row">
+            <label class="two columns"><input type="radio" value="directed" name="graph-type" checked="checked"><span class="label-body">Directed</span></input></label>
+            <label class="two columns"><input type="radio" value="undirected" name="graph-type"><span class="label-body">Undirected</span></input></label>
+        </div>
+        <div class="row">
+            <label class="three columns"><input value="weighted" type="radio" name="edge-type" checked="checked"><span class="label-body">Weighted / Edge Labelled</span></input></label>
+            <label class="two columns"><input value="unweighted" type="radio" name="edge-type"><span class="label-body">Unweighted</span></input></label>
+        </div>
+        <div class="row">
+            <div class="three columns">
+                <label for="node-labels">Node Labels</label>
+                <select class="u-full-width" id="label-format">
+                    <option value="numerals">1,2,3,...</option>
+                    <option value="alphabets">A,B,C,..</option>
+                    <option value="custom" selected>Custom Labels</option>
+                </select>
+                <textarea class="u-full-width" placeholder="One on each line" rows="12" id="node-labels" style="resize: none;height:auto;"></textarea>
+            </div>
+            <div class="nine columns">
+                <label for="data">Graph Data</label>
+                <select class="u-full-width" id="graph-data-format">
+                    <option value="adjmatrix">Adjacency Square Matrix: Comma separated square matrix, 0 means no edge</option>
+                    <option value="abw" selected>Node Node Weight: A B W means edge from A to B with label W (W is optional)</option>
+                </select>
+                <textarea class="u-full-width" placeholder="Comma separated square matrix, 0 means no edge" rows="12" id="graph-data" style="resize: none;height:auto;"></textarea>
+            </div>
+        </div>
+      </div>
+    </div>
+    <button id="create-graph" class="u-full-width button-primary">Create / Refresh</button>
+    <span class="instruction" style="float:left" id="instructions">Hold down SHIFT + scroll to Zoom In / Zoom Out</span>
+    <span class="instruction" style="float:right">Hold down SHIFT + drag to Pan</span>
+    <div class="row svgrow">
+      <svg style="border: 1px black solid;" id="svg-space" class="u-full-width"></svg>
+    </div>
+    <button id="save" class="u-full-width button-primary">Save this graph</button>
+    <canvas id="saver-canvas" style="display: none;"></canvas>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+<script type="text/javascript" src="js/d3.v4.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</html>
